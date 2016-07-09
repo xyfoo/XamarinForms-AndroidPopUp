@@ -9,11 +9,23 @@ namespace XFSampleApp
         {
             // Toast button
             Button showToastButton = new Button() { Text = "Show toast", HorizontalOptions = LayoutOptions.Center };
-            showToastButton.Clicked += (s, e) => { DependencyService.Get<IAndroidPopUp>().ShowToast("This is a toast"); };
+            showToastButton.Clicked += (s, e) =>
+            {
+                if (Device.OS == TargetPlatform.Android)
+                {
+                    DependencyService.Get<IAndroidPopUp>().ShowToast("This is a toast");
+                }
+            };
 
             // Snackbar button
             Button showSnackbarButton = new Button() { Text = "Show snackbar", HorizontalOptions = LayoutOptions.Center };
-            showSnackbarButton.Clicked += (s, e) => { DependencyService.Get<IAndroidPopUp>().ShowSnackbar("This is a snackbar"); };
+            showSnackbarButton.Clicked += (s, e) =>
+            {
+                if (Device.OS == TargetPlatform.Android)
+                {
+                    DependencyService.Get<IAndroidPopUp>().ShowSnackbar("This is a snackbar");
+                }
+            };
 
             StackLayout mainContent = new StackLayout() { VerticalOptions = LayoutOptions.Center };
             mainContent.Children.Add(showToastButton);
